@@ -1,0 +1,12 @@
+version: '2'
+
+services:
+  spring:
+    image: 'openjdk:9-jdk'
+    command: '/bin/sh -c "./mvnw install && java -jar target/devlog-0.0.1-SNAPSHOT.jar"'
+    volumes:
+      - .:/project
+    working_dir: '/project'
+    ports:
+      - "8080:8080"
+
