@@ -2,11 +2,35 @@ version: '2'
 
 services:
   spring:
-    image: 'openjdk:9-jdk'
-    command: '/bin/sh -c "./mvnw install && java -jar target/devlog-0.0.1-SNAPSHOT.jar"'
+    container_name: spring
+    image: 'openjdk:8-jdk'
+    #command: '/bin/sh -c "./mvnw install && java -jar target/devlog-0.0.1-SNAPSHOT.jar"'
+    command: './mvnw spring-boot:run'
     volumes:
       - .:/project
+      - "maven:/root/.m2"
     working_dir: '/project'
     ports:
       - "8080:8080"
+    depends_on:
+        - postgres
+
+  postgres:
+    container_name: postgres
+    image: postgres:10.3-alpine
+    restart: always
+    volumes:
+      - "db:/var/lib/postgresql/data"
+#    ports:
+#      - '5432:5432'
+    expose:
+      - 5432
+    environment:
+      POSTGRES_DB: "devlog"
+      POSTGRES_USER: "devlog"
+      POSTGRES_PASSWORD: "yourStrongPassword"
+
+volumes:
+  db:
+  maven:
 
