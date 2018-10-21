@@ -2,14 +2,32 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>devlog blog</title>
+<title>devlog</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link th:href="@{/bootstra.386/dist/css/bootstrap.css}"
+	rel="stylesheet" />
+<link th:href="@{/bootstra.386/dist/css/bootstrap-theme.css}"
+	rel="stylesheet" />
 </head>
 <body>
-	<h1>Welcome to the blog!</h1>
-	<ul>
-		<li th:each="blogPost : ${blogPosts}" th:text="${blogPost.title} +' (' + ${blogPost.id} + ')'">
-			Blog post title (id=0)
-		</li>
-	</ul>
+	<script th:src="@{/webjars/jquery/3.3.1/jquery.min.js}"></script>
+	<script th:src="@{/bootstra.386/dist/js/bootstrap.min.js}"></script>
+	<div class="container">
+		<div class="jumbotron">
+			<h1>Welcome to devlog!</h1>
+			<ul>
+				<li th:each="blogPost : ${blogPosts}"
+					th:text="${blogPost.title} +' (' + ${blogPost.id} + ')'">Blog
+					post title (id=0)</li>
+			</ul>
+		</div>
+	</div>
+	<noscript>
+		<style>
+		body {
+			visibility: visible
+		}
+		</style>
+	</noscript>
 </body>
 </html>
