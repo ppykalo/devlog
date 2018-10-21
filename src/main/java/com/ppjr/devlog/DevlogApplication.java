@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.*;
 import org.springframework.boot.autoconfigure.*;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -17,20 +18,22 @@ public class DevlogApplication {
 	private BlogPostRepository blogPostRepository;
 	
     @RequestMapping("/")
-    String index() {
-//    	BlogPost post = new BlogPost();
-//    	post.setTitle("Jakis tytul");
-//    	post.setContent("Jakas tam zawartosc");
-//    	blogPostRepository.save(post);
-//    	System.out.println("Created BlogPost with id = " + post.getId());
+    String index(Model model) {
+//	   	BlogPost post = new BlogPost();
+//	   	post.setTitle("Jakis tytul");
+//	   	post.setContent("Jakas tam zawartosc");
+//	   	blogPostRepository.save(post);
+//	   	System.out.println("Created BlogPost with id = " + post.getId());
     	
 //    	String result = "<b>Blog posts:</b> <br/>";
 //    	
-//    	List<BlogPost> blogPosts = blogPostRepository.findAll();
+    	List<BlogPost> blogPosts = blogPostRepository.findAll();
 //    	
 //    	for (BlogPost blogPost : blogPosts) {
 //    		result += blogPost.getId() + ": " + blogPost.getTitle() + "<br/>";
 //    	}
+    	
+    	model.addAttribute("blogPosts", blogPosts);
     	
         return "index";
     }
