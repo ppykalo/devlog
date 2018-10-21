@@ -4,7 +4,6 @@ services:
   spring:
     container_name: spring
     image: 'openjdk:8-jdk'
-    #command: '/bin/sh -c "./mvnw install && java -jar target/devlog-0.0.1-SNAPSHOT.jar"'
     command: './mvnw spring-boot:run'
     volumes:
       - .:/project
@@ -21,10 +20,10 @@ services:
     restart: always
     volumes:
       - "db:/var/lib/postgresql/data"
-#    ports:
-#      - '5432:5432'
-    expose:
-      - 5432
+    ports:
+      - '5432:5432'
+#    expose:
+#      - 5432
     environment:
       POSTGRES_DB: "devlog"
       POSTGRES_USER: "devlog"
